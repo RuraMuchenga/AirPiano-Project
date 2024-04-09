@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AirPiano</title>
+</head>
+
+<body>
+  <div id="user-registration">
+    <h2>User Registration</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="registerUser()">Register</button>
+  </div>
+
+  <div id="sensor-container" class="hidden">
+    <h1>AirPiano</h1>
+    <div id="distance-display">Distance: </div>
+
+    <div id="melody-controls">
+      <button id="music-playing" class="hidden" onclick="logMusicEvent('Music Played')">Music Playing</button>
+      <button id="music-stopped" class="hidden" onclick="logMusicEvent('Music Stopped')">Music Stopped</button>
+    </div>
+
+    <div id="history-log">
+      <h2>History Log</h2>
+      <ul id="log-list"></ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  <script src="main.js"></script>
+  <script>
+    function logMusicEvent(event) {
+      const logList = document.getElementById('log-list');
+      const logItem = document.createElement('li');
+      logItem.textContent = event + ' - ' + new Date().toLocaleString();
+      logList.appendChild(logItem);
+    }
+  </script>
+</body>
+
+</html>
